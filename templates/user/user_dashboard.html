@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}My Dashboard - SmartCart{% endblock %}
+
+{% block extra_css %}
+<style>
+    .welcome{
+        width:90%;
+        max-width:1200px;
+        margin:30px auto;
+        background:white;
+        padding:30px;
+        border-radius:10px;
+        box-shadow:0 5px 15px rgba(0,0,0,.1);
+    }
+
+    .welcome h2{
+        margin-bottom:10px;
+    }
+
+    .welcome p{
+        color:#555;
+    }
+
+    .cards{
+        width:90%;
+        max-width:1200px;
+        margin:20px auto 40px;
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+        gap:25px;
+    }
+
+    .card{
+        background:white;
+        padding:30px;
+        border-radius:10px;
+        text-align:center;
+        transition:.3s;
+        box-shadow:0 3px 10px rgba(0,0,0,.1);
+    }
+
+    .card:hover{
+        transform:translateY(-8px);
+        box-shadow:0 8px 20px rgba(0,0,0,.2);
+    }
+
+    .card h3{
+        margin:15px 0;
+    }
+
+    .card p{
+        color:#666;
+        margin-bottom:20px;
+    }
+
+    .card .btn{
+        display:inline-block;
+        background:#ffd814;
+        color:black;
+        text-decoration:none;
+        padding:12px 22px;
+        border-radius:20px;
+        font-weight:bold;
+    }
+
+    .card .btn:hover{
+        background:#f7ca00;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="welcome">
+    <h2>Welcome, {{ user_name }} 👋</h2>
+    <p>Browse the latest products, manage your cart, and place orders easily.</p>
+</div>
+
+<div class="cards">
+
+    <div class="card">
+        <h3>🛍 Browse Products</h3>
+        <p>Explore all available products.</p>
+        <a href="/user/products" class="btn">Browse Now</a>
+    </div>
+
+    <div class="card">
+        <h3>🛒 My Cart</h3>
+        <p>Items in Cart: <strong>{{ cart_count }}</strong></p>
+        <a href="/user/cart" class="btn">View Cart</a>
+    </div>
+
+    <div class="card">
+        <h3>📦 My Orders</h3>
+        <p>Track and manage your past orders.</p>
+        <a href="/user/my-orders" class="btn">View Orders</a>
+    </div>
+
+    <div class="card">
+        <h3>🚪 Logout</h3>
+        <p>Sign out of your account securely.</p>
+        <a href="/user-logout" class="btn">Logout</a>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} - SmartCart{% endblock %}
+
+{% block extra_css %}
+<style>
+    .pd-container{
+        width:90%;
+        max-width:1200px;
+        margin:40px auto;
+        background:white;
+        border-radius:10px;
+        padding:30px;
+        display:flex;
+        gap:40px;
+        box-shadow:0 5px 15px rgba(0,0,0,.1);
+    }
+
+    .pd-image-section{
+        flex:1;
+        text-align:center;
+    }
+
+    .pd-image-section img{
+        width:100%;
+        max-width:400px;
+        height:400px;
+        object-fit:contain;
+    }
+
+    .pd-details{
+        flex:1;
+    }
+
+    .pd-details h1{
+        font-size:32px;
+        margin-bottom:15px;
+    }
+
+    .pd-details .category{
+        color:#666;
+        margin-bottom:15px;
+    }
+
+    .pd-details .price{
+        color:#B12704;
+        font-size:32px;
+        font-weight:bold;
+        margin:20px 0;
+    }
+
+    .pd-details .description{
+        line-height:1.8;
+        color:#444;
+        margin-bottom:30px;
+    }
+
+    .pd-details .btn{
+        width:100%;
+        padding:14px;
+        border:none;
+        border-radius:25px;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+        margin-bottom:15px;
+    }
+
+    .pd-details .cart-btn{
+        background:#ffd814;
+    }
+
+    .pd-details .cart-btn:hover{
+        background:#f7ca00;
+    }
+
+    .pd-details .buy-btn{
+        display:block;
+        text-align:center;
+        text-decoration:none;
+        background:#ffa41c;
+        color:black;
+        padding:14px;
+        border-radius:25px;
+        font-weight:bold;
+        margin-bottom:15px;
+    }
+
+    .pd-details .buy-btn:hover{
+        background:#fa8900;
+    }
+
+    .pd-details .back-btn{
+        display:block;
+        text-align:center;
+        text-decoration:none;
+        background:#007185;
+        color:white;
+        padding:14px;
+        border-radius:25px;
+        font-weight:bold;
+    }
+
+    .pd-details .back-btn:hover{
+        background:#005f73;
+    }
+
+    @media(max-width:768px){
+        .pd-container{
+            flex-direction:column;
+        }
+
+        .pd-image-section img{
+            height:300px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="pd-container">
+
+    <div class="pd-image-section">
+        <img src="/static/uploads/product_images/{{ product.image }}" alt="{{ product.name }}">
+    </div>
+
+    <div class="pd-details">
+
+        <h1>{{ product.name }}</h1>
+
+        <p class="category">
+            Category: <strong>{{ product.category }}</strong>
+        </p>
+
+        <p class="price">
+            ₹{{ product.price }}
+        </p>
+
+        <p class="description">
+            {{ product.description }}
+        </p>
+
+        <form action="/user/add-to-cart/{{ product.product_id }}" method="GET">
+            <button class="btn cart-btn" type="submit">Add to Cart</button>
+        </form>
+
+        <a href="/user/address?product_id={{ product.product_id }}" class="buy-btn">
+            Buy Now
+        </a>
+
+        <a href="/user/products" class="back-btn">
+            ← Back to Products
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

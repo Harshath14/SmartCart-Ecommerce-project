@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+
+{% block title %}Secure Payment - SmartCart{% endblock %}
+
+{% block extra_css %}
+<style>
+    .pay-container{
+        width:90%;
+        max-width:1100px;
+        margin:40px auto;
+        display:flex;
+        gap:30px;
+        flex-wrap:wrap;
+    }
+
+    .payment-card{
+        flex:2;
+        min-width:280px;
+        background:#fff;
+        padding:30px;
+        border-radius:10px;
+        box-shadow:0 2px 8px rgba(0,0,0,.1);
+    }
+
+    .payment-card h2{
+        margin-bottom:20px;
+        color:#232f3e;
+    }
+
+    .payment-method{
+        border:2px solid #ff9900;
+        border-radius:8px;
+        padding:18px;
+        display:flex;
+        align-items:center;
+        gap:15px;
+        background:#fff8f0;
+    }
+
+    .payment-method img{
+        width:60px;
+    }
+
+    .payment-method h3{
+        color:#232f3e;
+    }
+
+    .payment-method p{
+        color:#555;
+        margin-top:5px;
+    }
+
+    .pay-summary{
+        flex:1;
+        min-width:260px;
+        background:#fff;
+        padding:25px;
+        border-radius:10px;
+        box-shadow:0 2px 8px rgba(0,0,0,.1);
+        height:fit-content;
+    }
+
+    .pay-summary h3{
+        margin-bottom:20px;
+        color:#232f3e;
+    }
+
+    .pay-summary .row{
+        display:flex;
+        justify-content:space-between;
+        margin:12px 0;
+        color:#444;
+    }
+
+    .pay-summary hr{
+        margin:15px 0;
+        border:none;
+        border-top:1px solid #ddd;
+    }
+
+    .pay-summary .total{
+        font-size:24px;
+        font-weight:bold;
+        color:#B12704;
+    }
+
+    .pay-summary button{
+        width:100%;
+        padding:14px;
+        margin-top:25px;
+        background:#FFD814;
+        border:none;
+        border-radius:30px;
+        font-size:18px;
+        cursor:pointer;
+        transition:.3s;
+    }
+
+    .pay-summary button:hover{
+        background:#F7CA00;
+    }
+
+    .secure{
+        margin-top:18px;
+        text-align:center;
+        color:green;
+        font-size:15px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="pay-container">
+
+    <div class="payment-card">
+
+        <h2>Select Payment Method</h2>
+
+        <div class="payment-method">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Razorpay_logo.svg" alt="Razorpay">
+            <div>
+                <h3>Razorpay Secure Checkout</h3>
+                <p>Pay securely using UPI, Credit Card, Debit Card, Net Banking and Wallets.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="pay-summary">
+
+        <h3>Order Summary</h3>
+
+        <div class="row">
+            <span>Items Total</span>
+            <span>₹{{ amount }}</span>
+        </div>
+
+        <div class="row">
+            <span>Shipping</span>
+            <span style="color:green;">FREE</span>
+        </div>
+
+        <hr>
+
+        <div class="row total">
+            <span>Order Total</span>
+            <span>₹{{ amount }}</span>
+        </div>
+
+        <button id="rzp-button">
+            Proceed to Pay
+        </button>
+
+        <div class="secure">
+            🔒 100% Secure Payment
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+var options = {
+    key: "{{ key_id }}",
+    amount: "{{ amount * 100 }}",
+    currency: "INR",
+    name: "SmartCart",
+    description: "Order Payment",
+    order_id: "{{ order_id }}",
+
+    handler: function (response){
+
+        var form = document.createElement("form");
+        form.method = "POST";
+        form.action = "/verify-payment";
+
+        var fields = {
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_signature: response.razorpay_signature
+        };
+
+        for (var name in fields){
+            var input = document.createElement("input");
+            input.type = "hidden";
+            input.name = name;
+            input.value = fields[name];
+            form.appendChild(input);
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+    },
+
+    theme:{
+        color:"#FFD814"
+    }
+};
+
+var rzp = new Razorpay(options);
+
+document.getElementById("rzp-button").onclick = function(e){
+    rzp.open();
+    e.preventDefault();
+};
+</script>
+{% endblock %}

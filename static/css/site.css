@@ -1,0 +1,350 @@
+/* =====================================================================
+   SmartCart — Shared Site Chrome (Navbar + Footer)
+   Amazon-inspired look. Loaded on every page so nav/footer stay identical;
+   only the page's own <style> block should touch anything inside <main>.
+   ===================================================================== */
+
+:root{
+    --sc-navy:#131921;
+    --sc-navy-2:#232f3e;
+    --sc-orange:#ff9900;
+    --sc-yellow:#febd69;
+    --sc-yellow-2:#ffd814;
+    --sc-yellow-3:#f7ca00;
+    --sc-link:#007185;
+    --sc-bg:#eaeded;
+    --sc-danger:#d8000c;
+    --sc-danger-bg:#ffe5e5;
+    --sc-success:#155724;
+    --sc-success-bg:#d4edda;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--sc-bg);
+}
+
+a{ color:inherit; }
+
+/* ---------------------------------------------------------------------
+   USER-FACING HEADER
+   --------------------------------------------------------------------- */
+
+.sc-header{
+    background:var(--sc-navy);
+    color:#fff;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.sc-header-top{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:12px 20px;
+    flex-wrap:wrap;
+}
+
+.sc-logo{
+    font-size:24px;
+    font-weight:bold;
+    color:#fff;
+    text-decoration:none;
+    white-space:nowrap;
+    flex-shrink:0;
+}
+
+.sc-logo span{ color:var(--sc-orange); }
+
+.sc-search{
+    flex:1;
+    display:flex;
+    min-width:200px;
+    max-width:700px;
+    border-radius:4px;
+    overflow:hidden;
+}
+
+.sc-search input{
+    flex:1;
+    border:none;
+    padding:10px 12px;
+    font-size:15px;
+    outline:none;
+}
+
+.sc-search button{
+    background:var(--sc-yellow);
+    border:none;
+    padding:0 16px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.sc-search button:hover{ background:var(--sc-yellow-3); }
+
+.sc-account-nav{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-left:auto;
+}
+
+.sc-nav-item{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    color:#fff;
+    text-decoration:none;
+    padding:8px 10px;
+    border:1px solid transparent;
+    border-radius:3px;
+    line-height:1.2;
+    white-space:nowrap;
+}
+
+.sc-nav-item:hover{
+    border-color:#fff;
+}
+.sc-nav-home{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    color:#fff;
+    text-decoration:none;
+    padding:8px 10px;
+    border:1px solid transparent;
+    border-radius:3px;
+    line-height:1.2;
+    white-space:nowrap;
+ }
+.sc-nav-products{
+   display:flex;
+    flex-direction:column;
+    justify-content:center;
+    color:#fff;
+    text-decoration:none;
+    padding:8px 10px;
+    border:1px solid transparent;
+    border-radius:3px;
+    line-height:1.2;
+    white-space:nowrap; 
+    
+}
+
+.sc-nav-small{ font-size:11px; color:#ccc; }
+.sc-nav-big{ font-size:14px; font-weight:bold; }
+
+.sc-cart{
+    position:relative;
+    font-size:22px;
+    flex-direction:row;
+    gap:6px;
+    align-items:center;
+}
+
+.sc-cart-count{
+    background:var(--sc-orange);
+    color:#111;
+    font-weight:bold;
+    font-size:12px;
+    border-radius:50%;
+    padding:1px 6px;
+    margin-right:2px;
+}
+
+.sc-header-bottom{
+    background:var(--sc-navy-2);
+    display:flex;
+    gap:20px;
+    padding:8px 20px;
+    flex-wrap:wrap;
+}
+
+.sc-header-bottom a{
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.sc-header-bottom a:hover{
+    color:var(--sc-orange);
+}
+
+/* ---------------------------------------------------------------------
+   ADMIN HEADER (dark, distinct accent so admin area reads separately)
+   --------------------------------------------------------------------- */
+
+.ad-header{
+    background:var(--sc-navy);
+    color:#fff;
+}
+
+.ad-header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 30px;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.ad-logo{
+    font-size:24px;
+    font-weight:bold;
+    color:#fff;
+    text-decoration:none;
+}
+
+.ad-logo span{ color:var(--sc-orange); }
+
+.ad-nav{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.ad-nav a{
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:bold;
+    padding:8px 12px;
+    border-radius:4px;
+}
+
+.ad-nav a:hover{
+    background:var(--sc-navy-2);
+    color:var(--sc-orange);
+}
+
+.ad-nav a.ad-logout{
+    background:var(--sc-orange);
+    color:#111;
+}
+
+.ad-nav a.ad-logout:hover{
+    background:#e68a00;
+    color:#111;
+}
+
+/* ---------------------------------------------------------------------
+   FLASH MESSAGES (shared)
+   --------------------------------------------------------------------- */
+
+.sc-flash-wrap{
+    width:90%;
+    max-width:1200px;
+    margin:15px auto 0;
+}
+
+.sc-flash{
+    padding:12px 16px;
+    border-radius:6px;
+    margin-bottom:10px;
+    font-size:14px;
+}
+
+.sc-flash-success{
+    background:var(--sc-success-bg);
+    color:var(--sc-success);
+    border-left:5px solid #28a745;
+}
+
+.sc-flash-danger{
+    background:var(--sc-danger-bg);
+    color:var(--sc-danger);
+    border-left:5px solid red;
+}
+
+.sc-flash-message{
+    background:#eef;
+    color:#224;
+    border-left:5px solid #557;
+}
+
+.sc-main{
+    min-height:60vh;
+}
+
+/* ---------------------------------------------------------------------
+   FOOTER (shared by user + admin pages)
+   --------------------------------------------------------------------- */
+
+.sc-footer{
+    background:var(--sc-navy-2);
+    color:#ddd;
+    margin-top:40px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.sc-footer-top{
+    background:#3a4553;
+    text-align:center;
+    padding:14px;
+    font-size:13px;
+    cursor:pointer;
+    color:#fff;
+}
+
+.sc-footer-top:hover{ background:#485266; }
+
+.sc-footer-main{
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:20px;
+    padding:35px 20px;
+}
+
+.sc-footer-col{
+    min-width:170px;
+}
+
+.sc-footer-col h4{
+    color:#fff;
+    font-size:15px;
+    margin-bottom:12px;
+}
+
+.sc-footer-col a{
+    display:block;
+    color:#ddd;
+    text-decoration:none;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.sc-footer-col a:hover{
+    text-decoration:underline;
+    color:#fff;
+}
+
+.sc-footer-bottom{
+    border-top:1px solid #3a4553;
+    text-align:center;
+    padding:18px;
+    font-size:13px;
+    color:#aaa;
+}
+
+.sc-footer-logo{
+    display:block;
+    font-size:18px;
+    font-weight:bold;
+    color:#fff;
+    margin-bottom:6px;
+}
+
+.sc-footer-logo span{ color:var(--sc-orange); }
+
+@media(max-width:700px){
+    .sc-header-top{ flex-direction:column; align-items:stretch; }
+    .sc-account-nav{ margin-left:0; justify-content:space-between; }
+    .ad-header-inner{ flex-direction:column; align-items:flex-start; }
+}

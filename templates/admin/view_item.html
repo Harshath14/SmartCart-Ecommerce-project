@@ -1,0 +1,142 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}{{ product.name }} - SmartCart Admin{% endblock %}
+
+{% block extra_css %}
+<style>
+    .vi-container{
+        max-width:900px;
+        margin:30px auto;
+        background:#fff;
+        border-radius:10px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.15);
+        overflow:hidden;
+    }
+
+    .vi-header{
+        background:#232f3e;
+        color:white;
+        padding:20px;
+        text-align:center;
+    }
+
+    .vi-card{
+        display:flex;
+        gap:40px;
+        padding:30px;
+        align-items:center;
+        flex-wrap:wrap;
+    }
+
+    .vi-image{
+        flex:1;
+        min-width:220px;
+        text-align:center;
+    }
+
+    .vi-image img{
+        width:280px;
+        height:280px;
+        object-fit:cover;
+        border-radius:10px;
+        border:1px solid #ddd;
+    }
+
+    .vi-info{
+        flex:2;
+        min-width:260px;
+    }
+
+    .vi-info h2{
+        color:#232f3e;
+        margin-bottom:20px;
+    }
+
+    .vi-info .info{
+        margin-bottom:18px;
+        font-size:18px;
+        color:#333;
+        line-height:1.6;
+    }
+
+    .vi-info .info strong{
+        color:#111;
+    }
+
+    .vi-info .price{
+        font-size:28px;
+        color:#B12704;
+        font-weight:bold;
+    }
+
+    .vi-back-btn{
+        display:inline-block;
+        margin-top:25px;
+        padding:12px 22px;
+        background:#ff9900;
+        color:white;
+        text-decoration:none;
+        border-radius:6px;
+        font-weight:bold;
+        transition:.3s;
+    }
+
+    .vi-back-btn:hover{
+        background:#e68a00;
+    }
+
+    @media(max-width:768px){
+        .vi-card{
+            flex-direction:column;
+            text-align:center;
+        }
+
+        .vi-image img{
+            width:220px;
+            height:220px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="vi-container">
+
+    <div class="vi-header">
+        <h1>Product Details</h1>
+    </div>
+
+    <div class="vi-card">
+
+        <div class="vi-image">
+            <img src="/static/uploads/product_images/{{ product.image }}" alt="{{ product.name }}">
+        </div>
+
+        <div class="vi-info">
+
+            <h2>{{ product.name }}</h2>
+
+            <div class="info">
+                <strong>Description:</strong><br>
+                {{ product.description }}
+            </div>
+
+            <div class="info">
+                <strong>Category:</strong>
+                {{ product.category }}
+            </div>
+
+            <div class="info price">
+                ₹{{ product.price }}
+            </div>
+
+            <a href="/admin/item-list" class="vi-back-btn">← Back to Product List</a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

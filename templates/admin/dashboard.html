@@ -1,0 +1,45 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Admin Dashboard - SmartCart{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <div class="card">
+
+        <h2>Admin Dashboard</h2>
+
+        <p>
+            Welcome, {{ admin_name }}. Manage products, view your profile, and monitor your store from here.
+        </p>
+
+        <div class="buttons">
+
+            <a href="/admin/item-list" class="btn">
+                📦 View All Products
+            </a>
+
+            <a href="/admin/add-item" class="btn">
+                ➕ Add New Product
+            </a>
+
+            <a href="/admin/profile" class="btn">
+                👤 My Profile
+            </a>
+
+            <a href="/admin-logout" class="btn logout">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}SmartCart - Shop Smart, Live Better{% endblock %}
+
+{% block extra_css %}
+<style>
+    .sc-hero{
+        background:linear-gradient(135deg, #232f3e, #131921);
+        color:#fff;
+        padding:70px 20px;
+        text-align:center;
+    }
+
+    .sc-hero h1{
+        font-size:42px;
+        margin-bottom:15px;
+    }
+
+    .sc-hero span{
+        color:var(--sc-orange);
+    }
+
+    .sc-hero p{
+        font-size:18px;
+        color:#ddd;
+        max-width:600px;
+        margin:0 auto 30px;
+    }
+
+    .sc-hero .btn{
+        display:inline-block;
+        background:var(--sc-yellow-2);
+        color:#111;
+        padding:14px 32px;
+        border-radius:25px;
+        text-decoration:none;
+        font-weight:bold;
+        font-size:16px;
+    }
+
+    .sc-hero .btn:hover{
+        background:var(--sc-yellow-3);
+    }
+
+    .sc-features{
+        max-width:1100px;
+        margin:50px auto;
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+        gap:25px;
+        padding:0 20px;
+    }
+
+    .sc-feature-card{
+        background:#fff;
+        padding:30px;
+        border-radius:10px;
+        text-align:center;
+        box-shadow:0 3px 10px rgba(0,0,0,.08);
+    }
+
+    .sc-feature-card h3{
+        margin-bottom:10px;
+        color:#232f3e;
+    }
+
+    .sc-feature-card p{
+        color:#555;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<section class="sc-hero">
+    <h1>Welcome to Smart<span>Cart</span></h1>
+    <p>Your one-stop shop for great deals on electronics, fashion, and more &mdash; delivered fast, priced right.</p>
+    <a href="/user/products" class="btn">Start Shopping</a>
+</section>
+
+<section class="sc-features">
+
+    <div class="sc-feature-card">
+        <h3>🚚 Fast Delivery</h3>
+        <p>Get your orders shipped quickly and reliably, right to your doorstep.</p>
+    </div>
+
+    <div class="sc-feature-card">
+        <h3>🔒 Secure Payments</h3>
+        <p>Checkout safely with Razorpay-powered payments and encrypted transactions.</p>
+    </div>
+
+    <div class="sc-feature-card">
+        <h3>💬 Easy Returns</h3>
+        <p>Track your orders and manage everything from your personal dashboard.</p>
+    </div>
+
+</section>
+
+{% endblock %}

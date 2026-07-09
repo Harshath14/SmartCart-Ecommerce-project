@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Payment Successful - SmartCart{% endblock %}
+
+{% block extra_css %}
+<style>
+    .ps-container{
+        width:60%;
+        min-width:280px;
+        margin:60px auto;
+        padding:30px;
+        text-align:center;
+        background:#fff;
+        border-radius:10px;
+        box-shadow:0 2px 8px rgba(0,0,0,.1);
+    }
+
+    .ps-container h2{
+        color:green;
+        margin-bottom:15px;
+    }
+
+    .ps-container p{
+        margin:6px 0;
+        color:#444;
+    }
+
+    .ps-container a{
+        display:inline-block;
+        margin-top:20px;
+        padding:12px 22px;
+        background:#ffd814;
+        color:#111;
+        border-radius:20px;
+        text-decoration:none;
+        font-weight:bold;
+    }
+
+    .ps-container a:hover{
+        background:#f7ca00;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="ps-container">
+    <h2>Payment Successful!</h2>
+    <p>Payment ID: {{ payment_id }}</p>
+    <p>Order ID: {{ order_id }}</p>
+    <a href="/user/products">Continue Shopping</a>
+</div>
+
+{% endblock %}

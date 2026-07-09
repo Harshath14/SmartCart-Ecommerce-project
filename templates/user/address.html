@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Shipping Address - SmartCart{% endblock %}
+
+{% block extra_css %}
+<style>
+    .addr-container{
+        width:450px;
+        max-width:92%;
+        margin:50px auto;
+        background:#fff;
+        padding:30px;
+        border-radius:10px;
+        box-shadow:0 0 10px rgba(0,0,0,.2);
+    }
+
+    .addr-container h2{
+        text-align:center;
+        margin-bottom:20px;
+    }
+
+    .addr-container input,
+    .addr-container textarea{
+        width:100%;
+        padding:10px;
+        margin-top:10px;
+        margin-bottom:15px;
+        border:1px solid #ccc;
+        border-radius:5px;
+        box-sizing:border-box;
+        font-family:inherit;
+    }
+
+    .addr-container button{
+        width:100%;
+        padding:12px;
+        border:none;
+        background:#28a745;
+        color:white;
+        font-size:16px;
+        border-radius:5px;
+        cursor:pointer;
+    }
+
+    .addr-container button:hover{
+        background:#218838;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="addr-container">
+
+    <h2>Shipping Address</h2>
+
+    <form action="{{ url_for('user_address') }}" method="POST">
+
+        <input type="text"
+               name="fullname"
+               placeholder="Full Name"
+               value="{{ address.fullname if address else '' }}"
+               required>
+
+        <input type="text"
+               name="phone"
+               placeholder="Phone Number"
+               value="{{ address.phone if address else '' }}"
+               required>
+
+        <textarea name="address"
+                  rows="4"
+                  placeholder="Complete Address"
+                  required>{{ address.address if address else '' }}</textarea>
+
+        <input type="text"
+               name="city"
+               placeholder="City"
+               value="{{ address.city if address else '' }}"
+               required>
+
+        <input type="text"
+               name="state"
+               placeholder="State"
+               value="{{ address.state if address else '' }}"
+               required>
+
+        <input type="text"
+               name="pincode"
+               placeholder="Pincode"
+               value="{{ address.pincode if address else '' }}"
+               required>
+
+        <!--
+            This must be a plain submit button, not wrapped in an <a>.
+            Wrapping it in <a href="/user/payment"> was the bug: the
+            browser navigated straight to /user/payment and never
+            actually submitted this form, so the address was never saved.
+        -->
+        <button type="submit">
+            Continue to Payment
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
