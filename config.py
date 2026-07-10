@@ -1,10 +1,10 @@
 SECRET_KEY = "123456789"   # used for sessions
 
 # MySQL Database Configuration
-DB_HOST = "localhost"
-DB_USER = "root"
-DB_PASSWORD = "123456789"  # keep empty if no password
-DB_NAME = "smartcart_db"
+# DB_HOST = "localhost"
+# DB_USER = "root"
+# DB_PASSWORD = "123456789"  # keep empty if no password
+# DB_NAME = "smartcart_db"
 
 
 MAIL_SERVER = 'smtp.gmail.com'
