@@ -584,7 +584,7 @@ def admin_profile_update():
     else:
         hashed_password = admin['password']  # keep old password
 
-    # 4️⃣ Process new profile image if uploaded
+    
     if new_image and new_image.filename != "":
         
         from werkzeug.utils import secure_filename

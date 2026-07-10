@@ -14,6 +14,8 @@
 <header class="sc-header">
     <div class="sc-header-top">
         <a class="sc-logo" href="{{ '/user-dashboard' if session.user_id else '/' }}">Smart<span>Cart</span></a>
+       
+       
 
         <!-- <form class="sc-search" action="/user/products" method="GET">
             <input type="text" name="search" placeholder="Search SmartCart products..." value="{{ request.args.get('search','') }}">
@@ -22,9 +24,12 @@
 
         <nav class="sc-account-nav">
             {% if session.user_id %}
+                <a href="/user-dashboard" class="sc-nav-item">
+
+                    <span class="sc-nav-big">Dashboard</span>
+                </a>
                 
                 <a href="/user/my-orders" class="sc-nav-item">
-                    <span class="sc-nav-small">Hello, {{ session.user_name }}</span>
                     <span class="sc-nav-big">Returns &amp; Orders</span>
                 </a>
                 <a href="/user/cart" class="sc-nav-item sc-cart">
@@ -36,6 +41,9 @@
                     <span class="sc-nav-big">Logout</span>
                 </a>
             {% else %}
+
+                <a href="/user-login">User Login</a>
+                <a href="/admin-login">Admin Login</a>
                 <a href="/user-login" class="sc-nav-item">
                     <span class="sc-nav-small">Hello, sign in</span>
                     <span class="sc-nav-big">Account &amp; Login</span>
